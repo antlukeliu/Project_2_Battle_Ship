@@ -38,7 +38,7 @@ class Ship:
             print(str(row_num).rjust(2) + " " + (" ".join(row)))
             row_num += 1
 
-    def clear_screen():
+    def clear_screen(self):
         print("\033c", end="")
         print('\n'*25)
 
@@ -96,23 +96,24 @@ class Ship:
                 cond2 = True
 
             # Given ship length cond3 makes sure the ship can fit on the board
-            if self.h_yes_or_no.lower() == 'y':
-                if self.col_index + self.length > BOARD_SIZE:
-                    print("Your ship doesn't fit on the board,"
-                          "try again with a new location or new coordinate")
-                    self.clear_screen()
-                    cond3 = False
-                else:
-                    cond3 = True
-
-            elif self.h_yes_or_no.lower() == 'n':
-                if self.row_index + self.length > BOARD_SIZE:
-                    print("Your ship doesn't fit on the board,"
-                          "try again with a new location or new coordinate")
-                    self.clear_screen()
-                    cond3 = False
-                else:
-                    cond3 = True
+            if cond1 is True:
+                if self.h_yes_or_no.lower() == 'y':
+                    if self.col_index + self.length > BOARD_SIZE:
+                        print("Your ship doesn't fit on the board,"
+                              "try again with a new location or new coordinate")
+                        self.clear_screen()
+                        cond3 = False
+                    else:
+                        cond3 = True
+    
+                elif self.h_yes_or_no.lower() == 'n':
+                    if self.row_index + self.length > BOARD_SIZE:
+                        print("Your ship doesn't fit on the board,"
+                              "try again with a new location or new coordinate")
+                        self.clear_screen()
+                        cond3 = False
+                    else:
+                        cond3 = True
 
             # cond4 makes sure there is on overlap and
             # if all 4 conditions are met then the board apprend the ship
