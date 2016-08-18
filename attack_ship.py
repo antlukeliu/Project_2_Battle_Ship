@@ -18,28 +18,29 @@ SHIP_INFO = [
     ("Patrol Boat", 2)
 ]
 
-def clear_screen():
-    print("\033c", end="")
-    print('\n'*25)
 
 class Attack:
+
+    def clear_screen(self):
+        print("\033c", end="")
+        print('\n'*10)
 
     def attacking(self, board, guess_board, ship_hp):
         self.get_coordinates(guess_board)
         if board[self.row_index][self.col_index] == '.':
             print("You have already shot at {}{}, try somewhere else."
                   .format(self.col_alpha, self.row_index_str))
-            self.attacking(board, guess_board)
+            self.attacking(board, guess_board, ship_hp)
 
         elif board[self.row_index][self.col_index] == '*':
             print("You have already shot at {}{}, try somewhere else."
                   .format(self.col_alpha, self.row_index_str))
-            self.attacking(board, guess_board)
+            self.attacking(board, guess_board, ship_hp)
 
         elif board[self.row_index][self.col_index] == '#':
             print("You have already shot at {}{}, try somewhere else."
                   .format(self.col_alpha, self.row_index_str))
-            self.attacking(board, guess_board)
+            self.attacking(board, guess_board, ship_hp)
         else:
             self.check_hit(board, guess_board, ship_hp)
 
@@ -64,15 +65,26 @@ class Attack:
             else:
                 print("There are not that many columns, try a letter"
                       "from A to {}".format(alpha_list[BOARD_SIZE-1]))
+                press_enter = input("Press enter to continue")
                 cond1 = False
 
-            if int(self.row_index_str) > BOARD_SIZE:
-                print("That row does not exist in this game! "
-                      "Try a number from 1 to {}!".format(BOARD_SIZE))
-                cond2 = False
-            else:
-                self.row_index = int(self.row_index_str) - 1
-                cond2 = True
+            try:
+                if int(self.row_index_str) > BOARD_SIZE:
+                    print("That row does not exist in this game! "
+                          "Try a number from 1 to {}!".format(BOARD_SIZE))
+                    press_enter = input("Press enter to continue")
+                    self.clear_screen()
+                    cond2 = False
+                else:
+                    self.row_index = int(self.row_index_str) - 1
+                    cond2 = True
+            except ValueError:
+                print("Input should be one letter and a number between 1 and {}"
+                      .format(BOARD_SIZE))
+                press_enter = input("Press enter to continue")
+                self.clear_screen()
+                cond1 = False
+                    
         return self.row_index, self.col_index
 
     def check_hit(self, board, guess_board, ship_hp):
@@ -80,23 +92,26 @@ class Attack:
         while condition1 is True:
             if board[self.row_index][self.col_index] == 'O':
                 guess_board[self.row_index][self.col_index] = '.'
-                clear_screen()
                 print("Miss!")
+                press_enter = input("Press enter to continue")
+                self.clear_screen()
                 condition1 = False
 
             elif board[self.row_index][self.col_index] == VERTICAL_SHIP:
                 board[self.row_index][self.col_index] = HIT
                 guess_board[self.row_index][self.col_index] = HIT
-                clear_screen()
                 print("HIT!")
+                press_enter = input("Press enter to continue")
+                self.clear_screen()
                 ship_hp.append(1)
                 condition1 = False
 
             elif board[self.row_index][self.col_index] == HORIZONTAL_SHIP:
                 board[self.row_index][self.col_index] = HIT
                 guess_board[self.row_index][self.col_index] = HIT
-                clear_screen()
                 print("HIT!")
+                press_enter = input("Press enter to continue")
+                self.clear_screen()
                 ship_hp.append(1)
                 condition1 = False
 
