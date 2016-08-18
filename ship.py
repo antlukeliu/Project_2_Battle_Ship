@@ -86,15 +86,19 @@ class Ship:
                 cond1 = False
 
             # cond2 makes sure the row index is a valid number on the board
-            if int(self.row_index_str) > BOARD_SIZE:
-                print("Number not on board! Try a number from 1 to {}!"
+            try:
+                if int(self.row_index_str) > BOARD_SIZE:
+                    print("Number not on board! Try a number from 1 to {}!"
+                          .format(BOARD_SIZE))
+                    self.clear_screen()
+                    cond2 = False
+                else:
+                    self.row_index = int(self.row_index_str) - 1
+                    cond2 = True
+            except ValueError:
+                print("Input should be a letter and a number between 1 and {}"
                       .format(BOARD_SIZE))
-                self.clear_screen()
-                cond2 = False
-            else:
-                self.row_index = int(self.row_index_str) - 1
-                cond2 = True
-
+                cond1 = False
             # Given ship length cond3 makes sure the ship can fit on the board
             if cond1 is True:
                 if self.h_yes_or_no.lower() == 'y':
