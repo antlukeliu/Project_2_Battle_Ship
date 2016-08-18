@@ -82,6 +82,7 @@ class Ship:
             else:
                 print("Invalid letter, use letter from A to {}"
                       .format(alpha_list[BOARD_SIZE-1]))
+                press_enter = input("Press enter to continue")
                 self.clear_screen()
                 cond1 = False
 
@@ -90,6 +91,7 @@ class Ship:
                 if int(self.row_index_str) > BOARD_SIZE:
                     print("Number not on board! Try a number from 1 to {}!"
                           .format(BOARD_SIZE))
+                    press_enter = input("Press enter to continue")
                     self.clear_screen()
                     cond2 = False
                 else:
@@ -105,6 +107,7 @@ class Ship:
                     if self.col_index + self.length > BOARD_SIZE:
                         print("Your ship doesn't fit on the board,"
                               "try again with a new location or new coordinate")
+                        press_enter = input("Press enter to continue")
                         self.clear_screen()
                         cond3 = False
                     else:
@@ -114,6 +117,7 @@ class Ship:
                     if self.row_index + self.length > BOARD_SIZE:
                         print("Your ship doesn't fit on the board,"
                               "try again with a new location or new coordinate")
+                        press_enter = input("Press enter to continue")
                         self.clear_screen()
                         cond3 = False
                     else:
