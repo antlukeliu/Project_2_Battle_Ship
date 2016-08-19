@@ -52,10 +52,15 @@ class Attack:
             coord_chosen.replace(" ", "")
             coord_seperated = list(coord_chosen)
             if len(coord_seperated) < 2:
-                 print("Alphabet letter and a number between 1 - {}"
+                print("Alphabet letter and a number between 1 - {}"
                        .format(BOARD_SIZE))
-                 cond1 = False
-            self.col_alpha = coord_seperated[0]
+                cond1 = False
+            try:
+                self.col_alpha = coord_seperated[0]
+            except ValueError:
+                print("Alphabet letter and a number between 1 - {}"
+                       .format(BOARD_SIZE))
+                cond1 = False
 
             try:
                 if len(coord_seperated) == 3:
