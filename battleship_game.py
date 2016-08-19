@@ -52,19 +52,6 @@ def print_board(board):
 
 def clear_screen():
     print("\033c", end="")
-    print('\n'*25)
-
-create_board(p1_board)
-create_board(p2_board)
-create_board(p1_guess_board)
-create_board(p2_guess_board)
-
-ship_class = Ship()
-attack_class = Attack()
-
-
-player_1 = input("Player 1 what is your name? ")
-player_2 = input("Player 2 what is your name? ")
 
 
 class game:
@@ -108,4 +95,15 @@ class game:
         else:
             print("{} you won".format(player_1))
 
-game()
+if __name__ == '__main__':
+    create_board(p1_board)
+    create_board(p2_board)
+    create_board(p1_guess_board)
+    create_board(p2_guess_board)
+
+    ship_class = Ship()
+    attack_class = Attack()
+
+    player_1 = input("Player 1 what is your name? ")
+    player_2 = input("Player 2 what is your name? ")
+    game()
