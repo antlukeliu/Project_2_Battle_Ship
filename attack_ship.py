@@ -23,7 +23,6 @@ class Attack:
 
     def clear_screen(self):
         print("\033c", end="")
-        print('\n'*10)
 
     def attacking(self, board, guess_board, ship_hp):
         self.get_coordinates(guess_board)
