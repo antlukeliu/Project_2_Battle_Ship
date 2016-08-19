@@ -51,6 +51,10 @@ class Attack:
             coord_chosen = input("At what coordinate do you want to attack?")
             coord_chosen.replace(" ", "")
             coord_seperated = list(coord_chosen)
+            if len(coord_seperated) < 2:
+                 print("Alphabet letter and a number between 1 - {}"
+                       .format(BOARD_SIZE))
+                 cond1 = False
             self.col_alpha = coord_seperated[0]
 
             try:
