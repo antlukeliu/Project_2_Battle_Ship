@@ -54,18 +54,29 @@ class Attack:
             coord_seperated = list(coord_chosen)
             self.col_alpha = coord_seperated[0]
 
-            if len(coord_seperated) == 3:
-                self.row_index_str = coord_seperated[1] + coord_seperated[2]
-            else:
-                self.row_index_str = coord_seperated[1]
+            try:
+                if len(coord_seperated) == 3:
+                    self.row_index_str = coord_seperated[1] + coord_seperated[2]
+                else:
+                    self.row_index_str = coord_seperated[1]
+            except IndexError:
+                print("Alphabet letter and a number between 1 - {}"
+                      .format(BOARD_SIZE))
+                self.clear_screen()
+                cond1 = False
 
-            if self.col_alpha.upper() in alpha_list[:BOARD_SIZE]:
-                self.col_index = alpha_list.index(self.col_alpha.upper())
-                cond1 = True
-            else:
-                print("There are not that many columns, try a letter"
-                      "from A to {}".format(alpha_list[BOARD_SIZE-1]))
-                press_enter = input("Press enter to continue")
+            try:
+                if self.col_alpha.upper() in alpha_list[:BOARD_SIZE]:
+                    self.col_index = alpha_list.index(self.col_alpha.upper())
+                    cond1 = True
+                else:
+                    print("Invalid letter, use letter from A to {}"
+                          .format(alpha_list[BOARD_SIZE-1]))
+                    self.clear_screen()
+                    cond1 = False
+            except AttributeError:
+                print("Alphabet letter and a number between 1 - {}"
+                      .format(BOARD_SIZE))
                 cond1 = False
 
             try:
