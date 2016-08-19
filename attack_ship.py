@@ -24,6 +24,19 @@ class Attack:
     def clear_screen(self):
         print("\033c", end="")
 
+    def print_board_heading(self):
+        print("   " + " "
+              .join([chr(c) for c in range(ord('A'), ord('A') + BOARD_SIZE)]))
+
+    def print_board(self, board):
+
+        self.print_board_heading()
+
+        row_num = 1
+        for row in board:
+            print(str(row_num).rjust(2) + " " + (" ".join(row)))
+            row_num += 1
+
     def attacking(self, board, guess_board, ship_hp):
         self.get_coordinates(guess_board)
         if board[self.row_index][self.col_index] == '.':
@@ -48,6 +61,7 @@ class Attack:
         cond2 = False
 
         while cond1 is False or cond2 is False:
+            self.print_board(guess_board)
             coord_chosen = input("At what coordinate do you want to attack?")
             coord_chosen.replace(" ", "")
             coord_seperated = list(coord_chosen)
@@ -150,3 +164,4 @@ class Attack:
                         board[coordi[0]][coordi[1]] = SUNK
                         guess_board[coordi[0]][coordi[1]] = SUNK
                     print("You sunk a {}.".format(key))
+                    press_enter = input("Press enter to continue")
