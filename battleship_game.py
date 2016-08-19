@@ -76,7 +76,6 @@ class game:
             player1_enter = input("{} it is your turn, press Enter to continue"
                                   .format(player_1))
             print("{} where do you want to attack".format(player_1))
-            print_board(p1_guess_board)
             attack_class.attacking(p2_board, p1_guess_board, p2_hp)
             attack_class.check_sunk(p2_board, p1_guess_board, p2_location_dict)
             print(len(p2_hp))
@@ -85,7 +84,6 @@ class game:
             player2_enter = input("{} it is your turn, press enter to continue"
                                   .format(player_2))
             print("{} where do you want to attack".format(player_2))
-            print_board(p2_guess_board)
             attack_class.attacking(p1_board, p2_guess_board, p1_hp)
             attack_class.check_sunk(p1_board, p2_guess_board, p1_location_dict)
             if len(p1_hp) == self.total_length:
