@@ -66,7 +66,12 @@ class Ship:
                  print("Alphabet letter and a number between 1 - {}"
                        .format(BOARD_SIZE))
                  cond1 = False
-            self.col_alpha = coord_seperated[0]
+            try:
+                self.col_alpha = coord_seperated[0]
+            except ValueError:
+                print("Alphabet letter and a number between 1 - {}"
+                       .format(BOARD_SIZE))
+                cond1 = False
 
             # if the Board_Size is 10 or greater,
             # makes sure double dight value does not throw an error
