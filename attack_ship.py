@@ -85,6 +85,7 @@ class Attack:
             except AttributeError:
                 print("Alphabet letter and a number between 1 - {}"
                       .format(BOARD_SIZE))
+                self.clear_screen()
                 cond1 = False
 
             try:
@@ -149,3 +150,5 @@ class Attack:
                         board[coordi[0]][coordi[1]] = SUNK
                         guess_board[coordi[0]][coordi[1]] = SUNK
                     print("You sunk a {}.".format(key))
+                    press_enter = print("Press enter to continue")
+                    self.clear_screen()
