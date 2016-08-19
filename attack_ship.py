@@ -150,5 +150,3 @@ class Attack:
                         board[coordi[0]][coordi[1]] = SUNK
                         guess_board[coordi[0]][coordi[1]] = SUNK
                     print("You sunk a {}.".format(key))
-                    press_enter = print("Press enter to continue")
-                    self.clear_screen()
