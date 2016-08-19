@@ -63,6 +63,10 @@ class Ship:
                                      "horizontally?(Y/N): ".format(self.ship))
             self.coord_chosen.replace(" ", "")
             coord_seperated = list(self.coord_chosen)
+            if len(coord_seperated) < 2:
+                 print("Alphabet letter and a number between 1 - {}"
+                       .format(BOARD_SIZE))
+                 cond1 = False
             self.col_alpha = coord_seperated[0]
 
             # if the Board_Size is 10 or greater,
