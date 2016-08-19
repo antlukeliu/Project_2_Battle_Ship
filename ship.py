@@ -40,7 +40,6 @@ class Ship:
 
     def clear_screen(self):
         print("\033c", end="")
-        print('\n'*5)
 
     def ship_placement(self, board, location_dict):
         for self.ship, self.length in SHIP_INFO:
