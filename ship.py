@@ -176,7 +176,7 @@ class Ship:
                                 if self.h_yes_or_no.lower() == 'y':
                                     for i in range(self.length):
                                         board[self.row_index][self.col_index + i] = H_SHIP
-                                        location.append([self.row_index + i, self.col_index])
+                                        location.append([self.row_index, self.col_index + i])
                                 location_dict[self.ship] = location
             self.print_board(board)
 
