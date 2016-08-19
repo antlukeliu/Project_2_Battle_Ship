@@ -45,8 +45,6 @@ class Ship:
         for self.ship, self.length in SHIP_INFO:
             self.check_ship_coordinates(board, location_dict)
 
-        
-
     def check_ship_coordinates(self, board, location_dict):
         location = []
         cond1 = False
@@ -63,16 +61,16 @@ class Ship:
             self.coord_chosen.replace(" ", "")
             coord_seperated = list(self.coord_chosen)
             if len(coord_seperated) < 2:
-                 print("Alphabet letter and a number between 1 - {}"
+                print("Alphabet letter and a number between 1 - {}"
                        .format(BOARD_SIZE))
-                 cond1 = False
+                cond1 = False
             try:
                 self.col_alpha = coord_seperated[0]
             except ValueError:
                 print("Alphabet letter and a number between 1 - {}"
                        .format(BOARD_SIZE))
                 cond1 = False
-
+            
             # if the Board_Size is 10 or greater,
             # makes sure double dight value does not throw an error
             try:
@@ -113,10 +111,13 @@ class Ship:
                 else:
                     self.row_index = int(self.row_index_str) - 1
                     cond2 = True
-            except ValueError:
-                print("Input should be a letter and a number between 1 and {}"
+            except (ValueError, AttributeError):
+                print("Input should be one letter and a number between 1 and {}"
                       .format(BOARD_SIZE))
+                press_enter = input("Press enter to continue")
+                self.clear_screen()
                 cond1 = False
+
             # Given ship length cond3 makes sure the ship can fit on the board
             if cond1 is True:
                 if self.h_yes_or_no.lower() == 'y':
@@ -128,7 +129,7 @@ class Ship:
                         cond3 = False
                     else:
                         cond3 = True
-    
+
                 elif self.h_yes_or_no.lower() == 'n':
                     if self.row_index + self.length > BOARD_SIZE:
                         print("Your ship doesn't fit on the board,"
@@ -178,3 +179,4 @@ class Ship:
                                         location.append([self.row_index + i, self.col_index])
                                 location_dict[self.ship] = location
             self.print_board(board)
+
