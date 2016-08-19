@@ -40,7 +40,7 @@ class Ship:
 
     def clear_screen(self):
         print("\033c", end="")
-        print('\n'*25)
+        print('\n'*5)
 
     def ship_placement(self, board, location_dict):
         for self.ship, self.length in SHIP_INFO:
@@ -65,25 +65,33 @@ class Ship:
             coord_seperated = list(self.coord_chosen)
             self.col_alpha = coord_seperated[0]
 
-
-            
             # if the Board_Size is 10 or greater,
             # makes sure double dight value does not throw an error
-            if len(coord_seperated) == 3:
-                self.row_index_str = coord_seperated[1] + coord_seperated[2]
-            else:
-                self.row_index_str = coord_seperated[1]
+            try:
+                if len(coord_seperated) == 3:
+                    self.row_index_str = coord_seperated[1] + coord_seperated[2]
+                else:
+                    self.row_index_str = coord_seperated[1]
+            except IndexError:
+                print("Alphabet letter and a number between 1 - {}"
+                      .format(BOARD_SIZE))
+                self.clear_screen()
+                cond1 = False
 
             # cond1 makes sure the column index
             # is a valid alphabet letter on the board
-            if self.col_alpha.upper() in alpha_list[:BOARD_SIZE]:
-                self.col_index = alpha_list.index(self.col_alpha.upper())
-                cond1 = True
-            else:
-                print("Invalid letter, use letter from A to {}"
-                      .format(alpha_list[BOARD_SIZE-1]))
-                press_enter = input("Press enter to continue")
-                self.clear_screen()
+            try:
+                if self.col_alpha.upper() in alpha_list[:BOARD_SIZE]:
+                    self.col_index = alpha_list.index(self.col_alpha.upper())
+                    cond1 = True
+                else:
+                    print("Invalid letter, use letter from A to {}"
+                          .format(alpha_list[BOARD_SIZE-1]))
+                    self.clear_screen()
+                    cond1 = False
+            except AttributeError:
+                print("Alphabet letter and a number between 1 - {}"
+                      .format(BOARD_SIZE))
                 cond1 = False
 
             # cond2 makes sure the row index is a valid number on the board
